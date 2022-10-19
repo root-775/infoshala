@@ -1,0 +1,11 @@
+:root {
+    --thm-font: "Teko", sans-serif;
+    --thm-b-font: "Teko", sans-serif;
+    --thm-black: #1a3546;
+    --thm-text: #6b7881;
+    --thm-base: #ffaa17;
+}
+
+.scroll-to-top {
+    color: #fff;
+}
