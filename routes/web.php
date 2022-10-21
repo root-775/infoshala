@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InfoshalaController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +40,46 @@ Route::get('/blog', [InfoshalaController::class, 'blog'])->name('blog');
 
 
 
+
+
+
+
+
+//admin
+Route::get('/auth', function(){ if(session()->get('email')){ return redirect()->route('adminDashboard');} return view('admin.login');})->name('adminLogin');
+// Route::get('/signup', [AdminController::class, 'signUp'])->name('signup');
+Route::post('/loginPost', [AdminController::class, 'adminLoginPost'])->name('adminLoginPost');
+
+
+Route::group(['prefix'=>'admin', 'middleware'=>['adminCheck']], function(){
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('adminDashboard');
+
+
+    Route::get('/add-category', [CategoryController::class, 'index'])->name('addCategory');
+    Route::post('/add-category', [CategoryController::class, 'store'])->name('addCategory');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('editCategory');
+    Route::post('/update-category', [CategoryController::class, 'update'])->name('updateCategory');
+    Route::get('/destroy-category/{id}', [CategoryController::class, 'destroy'])->name('destroyCategory');
+
+    Route::get('/add-tag', [TagController::class, 'index'])->name('addTag');
+    Route::post('/add-tag', [TagController::class, 'store'])->name('addTag');
+    Route::get('/edit-tag/{id}', [TagController::class, 'edit'])->name('editTag');
+    Route::post('/update-tag', [TagController::class, 'update'])->name('updateTag');
+    Route::get('/destroy-tag/{id}', [TagController::class, 'destroy'])->name('destroyTag');
+
+
+
+    Route::get('/view-blog', [BlogController::class, 'index'])->name('viewBlog');
+    Route::get('/add-blog', [BlogController::class, 'create'])->name('addBlog');
+    Route::post('/add-blog', [BlogController::class, 'store'])->name('addBlog');
+    Route::get('/edit-blog/{id}', [BlogController::class, 'edit'])->name('editBlog');
+    Route::post('/update-blog', [BlogController::class, 'update'])->name('updateBlog');
+    Route::get('/destroy-blog/{id}', [BlogController::class, 'destroy'])->name('destroyBlog');
+
+
+
+
+    //form
+    Route::get('contact-form', [ContactUsController::class, 'index'])->name('contact_us_data');
+});
 

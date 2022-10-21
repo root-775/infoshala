@@ -14,50 +14,30 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('admin.tag_add')->with(['tags' => $tags]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Tag::firstOrCreate(
+            [
+                'name' => $request->post('tag_name')
+            ],
+            [
+                'is_active' => $request->post('tag_status') == "on" ? 1 : 0
+            ]
+        );
+
+    session()->flash('success', 'Added Successfully');
+    return redirect()->route('addTag');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
+    public function edit($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tag $tag)
-    {
-        //
+        $tagEdit = Tag::find($id);
+        $tags = Tag::all();
+        return view('admin.tag_edit')->with(['tagEdit' => $tagEdit, 'tags' => $tags]);
     }
 
     /**
@@ -69,7 +49,17 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        Tag::updateOrCreate(
+            [
+                'id' => $request->post('tag_id')
+            ],
+            [
+                'name' => $request->post('tag_name'),
+                'is_active' => $request->post('tag_status') == "on" ? 1 : 0
+            ]
+        );
+        session()->flash('success', 'Updated Successfully');
+        return redirect()->route('addTag');
     }
 
     /**
@@ -78,8 +68,10 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        //
+        Tag::find($id)->delete();
+        session()->flash('success', 'Deleted Successfully');
+        return redirect()->route('addTag');
     }
 }

@@ -19,9 +19,12 @@ return new class extends Migration
             $table->string('blog_by');
             $table->string('short_desc');
             $table->text('long_desc');
-            $table->string('is_active')->default(1);
-            $table->string('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('tag_id')->references('id')->on('tags');
+            $table->tinyInteger('is_active')->default(1);
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->string('image')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
     }

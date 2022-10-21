@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+        return view('admin.category_add')->with(['category' => $category]);
     }
 
     /**
@@ -35,7 +36,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Category::firstOrCreate(
+                [
+                    'name' => $request->post('category_name')
+                ],
+                [
+                    'is_active' => $request->post('category_status') == "on" ? 1 : 0
+                ]
+            );
+
+        session()->flash('success', 'Added Successfully');
+        return redirect()->route('addCategory');
+
     }
 
     /**
@@ -55,9 +68,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        //
+        $categoryEdit = Category::find($id);
+        $category = Category::all();
+        return view('admin.category_edit')->with(['catEdit' => $categoryEdit, 'category' => $category]);
     }
 
     /**
@@ -69,7 +84,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        Category::updateOrCreate(
+            [
+                'id' => $request->post('category_id')
+            ],
+            [
+                'name' => $request->post('category_name'),
+                'is_active' => $request->post('category_status') == "on" ? 1 : 0
+            ]
+        );
+        session()->flash('success', 'Updated Successfully');
+        return redirect()->route('addCategory');
     }
 
     /**
@@ -78,8 +103,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        session()->flash('success', 'Deleted Successfully');
+        return redirect()->route('addCategory');
     }
 }
