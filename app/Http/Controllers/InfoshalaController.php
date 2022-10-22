@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Infoshala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InfoshalaController extends Controller
 {
@@ -44,18 +46,13 @@ class InfoshalaController extends Controller
         return view('ytvideo');
     }
 
-    public function blogGrid() {
-        return view('blog-grid');
-    }
     public function contact() {
         return view('contact');
     }
     public function portfolio() {
         return view('portfolio');
     }
-    public function blogSingle() {
-        return view('blog-single');
-    }
+
     public function faqs() {
         return view('faqs');
     }
@@ -68,5 +65,16 @@ class InfoshalaController extends Controller
 
     public function blog() {
         return view('blog');
+    }
+
+    public function blogGrid() {
+        $blog = Blog::active()->orderBy('id', 'desc')->get();
+        return view('blog-grid')->with(['blogs' => $blog]);
+    }
+
+    public function blogSingle($title) {
+        $blogRandom = Blog::active()->inRandomOrder()->limit(5)->get();
+        $blog = Blog::active()->where('title', 'like', '%'.Str::title(str_replace('-', ' ', $title)).'%')->first();
+        return view('blog-single')->with(['blog' => $blog, 'blogRandom' => $blogRandom]);
     }
 }

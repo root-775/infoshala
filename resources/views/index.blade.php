@@ -483,7 +483,7 @@
                                 </div>
 
                                 <h3 class="blog-six__title">
-                                    <a href="{{ route('blog-single') }}">What is the better way of running a successful
+                                    <a href="{{ route('blog-single', ['title' => 'test']) }}">What is the better way of running a successful
 										business?</a>
                                 </h3>
 
@@ -507,7 +507,7 @@
                                     </a>
                                 </div>
                                 <h3 class="blog-six__title">
-                                    <a href="{{ route('blog-single') }}">What is the better way of running a successful
+                                    <a href="{{ route('blog-single', ['title' => 'test']) }}">What is the better way of running a successful
 										business?</a>
                                 </h3>
                                 <p class="blog-six__text">Lorem ipsum is simply free text used by new pesnhl note this copytyping refreshing.</p>
@@ -530,7 +530,7 @@
                                     </a>
                                 </div>
                                 <h3 class="blog-six__title">
-                                    <a href="{{ route('blog-single') }}">What is the better way of running a successful
+                                    <a href="{{ route('blog-single', ['title' => 'test']) }}">What is the better way of running a successful
 										business?</a>
                                 </h3>
                                 <p class="blog-six__text">Lorem ipsum is simply free text used by new pesnhl note this copytyping refreshing.</p>

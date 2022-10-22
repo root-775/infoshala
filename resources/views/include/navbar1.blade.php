@@ -7,7 +7,7 @@
                     <!--Logo-->
                     <div class="logo-box">
                         <div class="logo"><a href="{{ route('index') }}" title="Infoshala -Best Digital Marketing company in Gurgaon | Best Web Development company in Gurgaon"><img
-                                    src="assets/images/logo/infoshala-white.png" id="thm-logo" alt="Infoshala -Best Digital Marketing agency|Best Web Development Company"
+                                    src="{{ asset('assets/images/logo/infoshala-white.png') }}" id="thm-logo" alt="Infoshala -Best Digital Marketing agency|Best Web Development Company"
                                     title="Infoshala -Best Digital Marketing agency|Best Web Development Company"></a></div>
                     </div>
                     <div class="nav-outer clearfix">

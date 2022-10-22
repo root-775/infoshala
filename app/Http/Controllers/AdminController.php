@@ -13,7 +13,7 @@ class AdminController extends Controller
         $adminUser = new Admin;
         $adminUser->name = "admin";
         $adminUser->email = "admin@gmail.com";
-        $adminUser->password = Hash::make('12345');
+        $adminUser->password = Hash::make('1199');
         $adminUser->save();
         echo "okay";
     }
@@ -34,13 +34,19 @@ class AdminController extends Controller
             return redirect()->route('adminLogin')->withInput();
         }
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('admin.dashboard');
+    }
+
+    public function logout(){
+        session()->forget([
+            'id',
+            'name',
+            'email',
+            'created_at',
+        ]);
+        return redirect()->route('adminLogin');
     }
 }

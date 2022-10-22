@@ -13,13 +13,19 @@ class Blog extends Model
     public $fillable = ['title', 'blog_by', 'short_desc', 'long_desc', 'is_active', 'category_id', 'tag_id'];
 
     public function category(){
-        return $this->hasMany(Category::class, 'id', 'category_id');
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
     public function tag(){
-        return $this->hasMany(Tag::class, 'id', 'tag_id');
+        return $this->hasOne(Tag::class, 'id', 'tag_id');
     }
 
     public function getSlugAttribute(){
         return Str::slug($this->title);
     }
+
+    public function scopeActive($query){
+        return $query->where('is_active', 1);
+    }
+
+
 }

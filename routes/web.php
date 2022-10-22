@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\InfoshalaController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -17,28 +18,27 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/', [InfoshalaController::class, 'index'])->name('index');
-Route::get('about', [InfoshalaController::class, 'about'])->name('about');
-Route::get('/services', [InfoshalaController::class, 'services'])->name('services');
-Route::get('/website-design-company', [InfoshalaController::class, 'websiteDesignCompany'])->name('website-design-company');
-Route::get('/website-development-company', [InfoshalaController::class, 'websiteDevelopmentCompany'])->name('website-development-company');
-Route::get('/digital-marketing-company', [InfoshalaController::class, 'digitalMarketingCompany'])->name('digital-marketing-company');
-Route::get('/graphic-designing-company', [InfoshalaController::class, 'graphicDesigningCompany'])->name('graphic-designing-company');
-Route::get('/ecommerce-services', [InfoshalaController::class, 'ecommerceServices'])->name('ecommerce-services');
-Route::get('/seo-company-gurgaon', [InfoshalaController::class, 'seoCompanyGurgaon'])->name('seo-company-gurgaon');
-Route::get('/ytvideo', [InfoshalaController::class, 'ytVideo'])->name('ytvideo');
-Route::get('/blog-grid', [InfoshalaController::class, 'blogGrid'])->name('blog-grid');
-Route::get('/contact', [InfoshalaController::class, 'contact'])->name('contact');
-Route::get('/portfolio', [InfoshalaController::class, 'portfolio'])->name('portfolio');
-Route::get('/blog-single', [InfoshalaController::class, 'blogSingle'])->name('blog-single');
-Route::get('/faqs', [InfoshalaController::class, 'faqs'])->name('faqs');
-Route::get('/privacy-policy', [InfoshalaController::class, 'privacyPolicy'])->name('privacy-policy');
-Route::get('/team', [InfoshalaController::class, 'team'])->name('team');
-Route::get('/blog', [InfoshalaController::class, 'blog'])->name('blog');
-
-
+Route::middleware(['userVisitor'])->group(function () {
+    Route::get('/', [InfoshalaController::class, 'index'])->name('index');
+    Route::get('about', [InfoshalaController::class, 'about'])->name('about');
+    Route::get('/services', [InfoshalaController::class, 'services'])->name('services');
+    Route::get('/website-design-company', [InfoshalaController::class, 'websiteDesignCompany'])->name('website-design-company');
+    Route::get('/website-development-company', [InfoshalaController::class, 'websiteDevelopmentCompany'])->name('website-development-company');
+    Route::get('/digital-marketing-company', [InfoshalaController::class, 'digitalMarketingCompany'])->name('digital-marketing-company');
+    Route::get('/graphic-designing-company', [InfoshalaController::class, 'graphicDesigningCompany'])->name('graphic-designing-company');
+    Route::get('/ecommerce-services', [InfoshalaController::class, 'ecommerceServices'])->name('ecommerce-services');
+    Route::get('/seo-company-gurgaon', [InfoshalaController::class, 'seoCompanyGurgaon'])->name('seo-company-gurgaon');
+    Route::get('/ytvideo', [InfoshalaController::class, 'ytVideo'])->name('ytvideo');
+    Route::get('/contact', [InfoshalaController::class, 'contact'])->name('contact');
+    Route::post('/save-contact', [ContactFormController::class, 'store'])->name('saveContact');
+    Route::get('/portfolio', [InfoshalaController::class, 'portfolio'])->name('portfolio');
+    Route::get('/faqs', [InfoshalaController::class, 'faqs'])->name('faqs');
+    Route::get('/privacy-policy', [InfoshalaController::class, 'privacyPolicy'])->name('privacy-policy');
+    Route::get('/team', [InfoshalaController::class, 'team'])->name('team');
+    Route::get('/blog', [InfoshalaController::class, 'blog'])->name('blog');
+    Route::get('/blog-grid', [InfoshalaController::class, 'blogGrid'])->name('blog-grid');
+    Route::get('/blog-single/{title}', [InfoshalaController::class, 'blogSingle'])->name('blog-single');
+});
 
 
 
@@ -53,6 +53,7 @@ Route::post('/loginPost', [AdminController::class, 'adminLoginPost'])->name('adm
 
 Route::group(['prefix'=>'admin', 'middleware'=>['adminCheck']], function(){
     Route::get('/dashboard', [AdminController::class, 'index'])->name('adminDashboard');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('a_logout');
 
 
     Route::get('/add-category', [CategoryController::class, 'index'])->name('addCategory');
@@ -80,6 +81,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>['adminCheck']], function(){
 
 
     //form
-    Route::get('contact-form', [ContactUsController::class, 'index'])->name('contact_us_data');
+    Route::get('contact-form', [ContactFormController::class, 'index'])->name('contact_us_data');
 });
 

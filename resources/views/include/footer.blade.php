@@ -11,7 +11,7 @@
                             <div class="footer-widget logo-widget">
                                 <div class="widget-content">
                                     <div class="logo">
-                                        <a href="{{ route('index') }}"><img id="fLogo" src="assets/images/logo/infoshala-white.png" alt="Infoshala -Best Digital Marketing company in Gurgaon | Best Web Development company in Gurgaon"/></a>
+                                        <a href="{{ route('index') }}"><img id="fLogo" src="{{ asset('assets/images/logo/infoshala-white.png') }}" alt="Infoshala -Best Digital Marketing company in Gurgaon | Best Web Development company in Gurgaon"/></a>
                                     </div>
                                     <div class="text">Welcome to our website <a href="{{ route('index') }}">infoshala.com</a> website design & development company in Gurgaon.</div>
                                     <ul class="social-links clearfix">
@@ -110,20 +110,20 @@
 
 
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
-     <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/TweenMax.js"></script>
-    <script src="assets/js/jquery-ui.js"></script>
-    <script src="assets/js/jquery.fancybox.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/mixitup.js"></script>
-    <script src="assets/js/appear.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/jQuery.style.switcher.min.js"></script>
+     <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/TweenMax.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.js') }}"></script>
+    <script src="{{ asset('assets/js/mixitup.js') }}"></script>
+    <script src="{{ asset('assets/js/appear.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.js') }}"></script>
+    <script src="{{ asset('assets/js/jQuery.style.switcher.min.js') }}"></script>
 
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/jarallax.min.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/custom-script.js"></script>
+    <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jarallax.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-script.js') }}"></script>

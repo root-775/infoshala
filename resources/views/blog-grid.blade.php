@@ -37,138 +37,33 @@
             <div class="auto-container">
 
                 <div class="row clearfix">
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
+                    <!--News Block start-->
+                    @foreach ($blogs as $item)
+                        <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms"
+                            data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <a href="{{ route('blog-single', ['title' => Str::slug($item->title)]) }}"><img src="assets/images/blog/blog-1.jpg" alt=""></a>
                                 </div>
-                                <h5><a href="{{ route('blog-single') }}">basic rules of running web agency business</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
+                                <div class="lower-box">
+                                    <div class="post-meta">
+                                        <ul class="clearfix">
+                                            <li><span class="far fa-clock"></span> {{ $item->created_at }}</li>
+                                            <li><span class="far fa-user-circle"></span> {{ $item->blog_by }}</li>
+                                            {{-- <li><span class="far fa-comments"></span> 2 Comments</li> --}}
+                                        </ul>
+                                    </div>
+                                    <h5><a href="{{ route('blog-single', ['title' => Str::slug($item->title)]) }}">{{ $item->title }}</a></h5>
+                                    <div class="text">{{ Str::limit($item->short_desc, 63, '...') }}</div>
+                                    <div class="link-box"><a class="theme-btn" href="{{ route('blog-single', ['title' => Str::slug($item->title)]) }}"><span
+                                                class="flaticon-next-1"></span></a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-2.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
-                                </div>
-                                <h5><a href="{{ route('blog-single') }}">Delivering the best digital marketing</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-3.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
-                                </div>
-                                <h5><a href="{{ route('blog-single') }}">Introducing the latest linoor features</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-4.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
-                                </div>
-                                <h5><a href="{{ route('blog-single') }}">EXPERIENCES THAT CONNECT WITH PEOPLE</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="300ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-5.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
-                                </div>
-                                <h5><a href="{{ route('blog-single') }}">A DEEP UNDERSTANDING OF OUR AUDIENCE</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--News Block-->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="600ms"
-                        data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <a href="{{ route('blog-single') }}"><img src="assets/images/blog/blog-6.jpg" alt=""></a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="post-meta">
-                                    <ul class="clearfix">
-                                        <li><span class="far fa-clock"></span> 20 Mar</li>
-                                        <li><span class="far fa-user-circle"></span> Admin</li>
-                                        <li><span class="far fa-comments"></span> 2 Comments</li>
-                                    </ul>
-                                </div>
-                                <h5><a href="{{ route('blog-single') }}">WE BUILD AND ACTIVATE BRANDS INSIGHT</a></h5>
-                                <div class="text">Lorem ipsum is simply free text used by copytyping refreshing.</div>
-                                <div class="link-box"><a class="theme-btn" href="{{ route('blog-single') }}"><span
-                                            class="flaticon-next-1"></span></a></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
+                    <!--News Block End-->
+
                 </div>
                 <div class="more-box">
                     <a class="theme-btn btn-style-one" href="{{ route('blog') }}">
