@@ -58,8 +58,12 @@
 					</div><!-- /.col-lg-4 -->
 					<div class="col-lg-8">
 						<div class="form-box">
+                            @if (session()->get('contactSuccess'))
+                                <div class="text-center text-success" >Thank You for Contact us, ower team will be contact you.</div>
+                            @endif
 							<div class="default-form">
-								<form method="" action="" id="contact-form">
+								<form method="POST" action="{{ route('saveContact') }}" id="contact-form">
+                                    @csrf
 									<div class="row clearfix">
 										<div class="form-group col-lg-6 col-md-6 col-sm-12">
 											<div class="field-inner">

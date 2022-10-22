@@ -46,36 +46,30 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('addBlog') }}" method="POST" enctype="multipart/form-data">@csrf
+                        <form action="{{ route('addBlog') }}" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="category_id" value="{{ $blog->id }}">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Title...">
+                                    <input type="text" class="form-control" id="title" value="{{ $blog->title }}" name="title" placeholder="Title...">
                                 </div>
                                 <div class="form-group">
                                     <label for="blog_by">Blog By</label>
-                                    <input type="text" class="form-control" id="blog_by" name="blog_by" placeholder="Blog By...">
+                                    <input type="text" class="form-control" id="blog_by" name="blog_by" value="{{ $blog->blog_by }}" placeholder="Blog By...">
                                 </div>
                                 <div class="form-group">
                                     <label for="short_desc">Short Desc</label>
-                                    <textarea class="form-control" id="short_desc" name="short_desc" placeholder="short Desc..." rows="5"></textarea>
+                                    <textarea class="form-control" id="short_desc" name="short_desc" value="{{ $blog->short_desc }}" placeholder="short Desc..." rows="5"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="long_desc">Long Desc</label>
-                                    <textarea class="form-control" id="long_desc" name="long_desc" placeholder="Long Desc..." rows="10"></textarea>
+                                    <textarea class="form-control" id="long_desc" name="long_desc" value="{{ $blog->long_desc }}" placeholder="Long Desc..." rows="10"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="long_desc">Long Desc</label>
-                                    {{ $blog->category }}
-                                    <br>
-                                    {{ $blog->tag }}
-                                    <br>
-                                    {{ $blog->slug }}
-                                </div>
-                                {{-- <div class="form-group">
                                     <label for="category_id">Category</label>
                                     <select name="category_id" id="category_id" class="form-control">
-                                        <option value="">-- select --</option>
+                                        <option value="{{ $blog->category->id }}">-- {{ $blog->category->name }} --</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
@@ -84,19 +78,19 @@
                                 <div class="form-group">
                                     <label for="tag_id">Tags</label>
                                     <select name="tag_id" id="tag_id" class="form-control">
-                                        <option value="">-- select --</option>
+                                        <option value="{{ $blog->tag->id }}">-- {{ $blog->tag->name }} --</option>
                                         @foreach ($tags as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="form-group">
                                     <label for="image">Image</label>
                                     <input type="file" class="form-control" id="image" name="image" >
                                 </div>
                                 <div class="form-group">
                                     <label for="category_status">Status</label>
-                                    <input type="checkbox" name="is_active" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                    <input type="checkbox" name="is_active" {{ $blog->is_active == 1 ? 'checked' : '' }} data-bootstrap-switch data-off-color="danger" data-on-color="success">
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -148,8 +142,8 @@
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->is_active == 1 ? 'Active' : 'Deactive' }}</td>
                                 <td>
-                                    <a class="pr-4" href="{{ route('editCategory', [$item->id]) }}"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ route('destroyCategory', [$item->id]) }}"><i class="fa fa-trash-alt text-danger"></i></a>
+                                    <a class="pr-4" href="{{ route('editBlog', [$item->id]) }}"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('destroyBlog', [$item->id]) }}"><i class="fa fa-trash-alt text-danger"></i></a>
                                 </td>
                             </tr>
                         @endforeach

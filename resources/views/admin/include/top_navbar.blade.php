@@ -24,6 +24,11 @@
                 <i class="fas fa-th-large"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-slide="true" href="{{ route('a_logout') }}" role="button">
+                <i class="fas fa-sign-out-alt fa-lg"></i>
+            </a>
+        </li>
     </ul>
 </nav>
 <!-- /.navbar -->

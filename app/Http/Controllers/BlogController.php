@@ -84,7 +84,12 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::find($id);
-        return view('admin.blog_edit')->with(['blog' => $blog, 'blogs' => Blog::all()]);
+        return view('admin.blog_edit')->with(
+            ['blog' => $blog,
+            'blogs' => Blog::all(),
+            'categories' => Category::all(),
+            'tags' => Tag::all()
+        ]);
     }
 
     /**
@@ -96,7 +101,29 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $data = $request->post();
+        $blog = Blog::updateOrCreate(
+            [
+                'id' => $request->post('category_id')
+            ],
+            [
+            'title' => Arr::get($data ,'title'),
+            'blog_by' => Arr::get($data ,'blog_by'),
+            'short_desc' => Arr::get($data ,'short_desc'),
+            'long_desc' => Arr::get($data ,'long_desc'),
+            'is_active' => Arr::get($data ,'is_active', 0) == "on" ? 1 : 0,
+            'category_id' => Arr::get($data ,'category_id'),
+            'tag_id' => Arr::get($data ,'tag_id'),
+        ]);
+        if ($request->hasFile('image')) {
+            $image = time().'-'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path().'/image/blog', $image);
+            $blog->image = $image;
+            $blog->save();
+        }
+
+        session()->flash('success', 'Updated Successfully');
+        return redirect()->route('addBlog');
     }
 
     /**
@@ -105,8 +132,12 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
-        //
+        $blog = Blog::find($id);
+        @unlink('image/blog/'.$blog->b_image);
+        $blog->delete();
+        session()->flash('success', 'Deleted Successfully');
+        return redirect()->route('addBlog');
     }
 }
