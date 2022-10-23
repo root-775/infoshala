@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactForm;
 use App\Http\Controllers\Controller;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class ContactFormController extends Controller
@@ -19,22 +20,7 @@ class ContactFormController extends Controller
         return view('admin.form_contact_us')->with(['contactUs' => $contactUs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $contactUs = new ContactForm;
@@ -48,48 +34,8 @@ class ContactFormController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ContactForm  $contactForm
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ContactForm  $contactForm
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactForm  $contactForm
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ContactForm  $contactForm
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ContactForm $contactForm)
-    {
-        //
+    public function visiters(){
+        $visiter = Visitor::orderBy('id', 'DESC')->get();
+        return view('admin.visiter')->with(['visiter' => $visiter]);
     }
 }
