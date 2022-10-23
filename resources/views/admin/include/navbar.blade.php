@@ -148,9 +148,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('addBlog') }}" class="nav-link">
+                            <a href="{{ route('viewVisiter') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
+                                <p>Visiter</p>
                             </a>
                         </li>
                     </ul>

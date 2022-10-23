@@ -82,5 +82,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['adminCheck']], function(){
 
     //form
     Route::get('contact-form', [ContactFormController::class, 'index'])->name('contact_us_data');
+
+    //Visiter
+    Route::get('/visiter', [ContactFormController::class, 'visiters'])->name('viewVisiter');
 });
 
